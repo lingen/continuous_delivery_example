@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  test-backend:
+    image: test-backend:1
+    container_name: test-backend
+    ports: 
+      - "8080:8080"
+  test-front:
+    image: test-front:1
+    container_name: test-front
+    ports: 
+      - "80:80"
+    depends_on:
+      - test-backend
