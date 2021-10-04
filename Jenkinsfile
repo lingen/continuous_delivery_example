@@ -2,20 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('编译与构建') {
+        stage('build') {
             steps {
                 sh 'cd test-backend'
                 sh 'gradle build -x test'
             }
         }
 
-        stage('镜像制作'){
+        stage('docker image build'){
             steps {
                 sh 'docker build test-backend:1 .'
             }
         }
 
-        stage('重启服务'){
+        stage('start docker'){
             steps {
                 sh 'docker run -dp 8080:8080  test-backend:1'
             }
